@@ -10,11 +10,9 @@ var windCardEl = document.querySelector('#wind-card')
 var humidityCardEl = document.querySelector('#humidity')
 var iconEl = document.querySelector('#icon')
 var searchContainer = document.querySelector('.card-body')
-var todaysData = moment().format('MMMM Do YY')
-var fiveDayTempEl = document.querySelector('#temp-card')
-var fiveDayHumEl = document.querySelector('#humidity-card')
-var fiveDayWindEl = document.querySelector('#wind-card')
-var fiveDayDateEl = document.querySelector('#date')
+var todaysDate = moment().format('MMMM Do YY')
+var fiveDayEl = document.querySelector('.fiveday-container')
+var cityNameEl = document.querySelector('#city-name')
 
 submitBtnEl.addEventListener('click', weatherApi) 
 
@@ -37,7 +35,8 @@ submitBtnEl.addEventListener('click', weatherApi)
        cityButton.textContent = name
        cityButton.classList.add('card-body')
        searchContainer.append(cityButton);
-       
+       cityNameEl.textContent = `${name} ${todaysDate}`
+
 
 
         dataWeather(lon , lat, name)
@@ -67,39 +66,31 @@ function dataWeather(lon, lat, name) {
         uviIndexEl.textContent = `uvi: ${uvi}`;
         iconEl.setAttribute("src", urlIcon)
         
+        //fivedayforecast
+        const dayOne = data.daily[1]
+        const dayTwo = data.daily[2]
+        const dayThree = data.daily[3]
+        const dayFour = data.daily[4]
+        const dayFive = data.daily[5]
+
+        var fiveDays = [dayOne, dayTwo, dayThree, dayFour, dayFive]
+  
+        for (let index = 0; index < fiveDays.length; index++) {
+            var fiveDates = moment(fiveDays[index].dt*1000).format('MMMM Do YYYY')
+            var textFiveDay = document.createElement('p')
+            textFiveDay.textContent = fiveDates
+            fiveDayEl.append(textFiveDay)
+            console.log(textFiveDay);
+
+            var fiveDayTemp = fiveDays[index].temp.day
+            var todaystemp = document.createElement('p')
+            todaystemp.textContent = fiveDayTemp 
+            fiveDayEl.append(todaystemp)
+            
+
+            
+        }
         
     })
 }
-    function fiveDayForecast(event) {
-        event.preventDefault()
-        fetch('http://api.openweathermap.org/geo/1.0/direct?q='+ searchFormEl.value +'&appid='+keyApi)
 
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-
-            const fiveDayTemp = data.daily[1,2,3,4,5].temp
-            const fiveDayWind = data.daily[1,2,3,4,5].wind_speed
-            const fiveDayHumidity = data.daily[1,2,3,4,5].humidity
-            const fiveDayDateEl = data.daily[1,2,3,4,5].date
-
-            fiveDayTempEl.textContent = `Temperature: ${temp}`;
-            
-            
-        })
-
-        
-    }
-
-    const DAYS = () => {
-        const day = []
-        const startDate = moment().add(1, 'day')
-        const endDate = moment().add(5, 'day')
-
-        while (endDate.diff(startDate, 'day') >= 0) {
-            day.push(startDate.format('l'))
-            startDate.add(1, 'day')
-        }
-        return day
-    }
-    console.log(DAYS())
