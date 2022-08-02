@@ -29,6 +29,7 @@
   main {
     margin: 20px auto;
     width: 94%;
+    position: relative;
   }
   
   p {
@@ -39,15 +40,46 @@
     float: left;
   }
 
+.clear-items {
+  bottom: 50px;
+  position: fixed;
+}
   .results-container{
     text-align: center;
     width: 90%;
     
   }
-
-  .fiveday-container {
-    
+  .fivedayboxes {
+    font-size: 1.3rem;
+    text-decoration: none;
+    padding: 6px 5px;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+    border-radius: lightgray;
+    color: black;
+    border: none;
+    outline: none;
+    background-color: lightgray;
+    box-shadow: 3px 3px lightgray;
+    transform: translate(-1px, -1px);
   }
+   /* .fiveday-container {
+        font-size: 1.3rem;
+    text-decoration: none;
+    padding: 6px 5px;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+    border-radius: lightgray;
+    color: black;
+    border: none;
+    outline: none;
+    background-color: lightgray;
+    box-shadow: 3px 3px lightgray;
+    transform: translate(-1px, -1px);
+  } */
+
 
   .btn {
     font-size: 1.3rem;
