@@ -14,12 +14,8 @@
     font-size: 16px;
   }
   
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+   h1,
+   h3{
     font-weight: 700;
     margin: 0;
     color: var;
@@ -61,7 +57,7 @@
     border: none;
     outline: none;
     background-color: lightgray;
-    box-shadow: 3px 3px lightgray;
+    box-shadow: 3px 3px gray;
     transform: translate(-1px, -1px);
   }
    /* .fiveday-container {

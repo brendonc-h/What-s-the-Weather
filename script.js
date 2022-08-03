@@ -46,7 +46,7 @@ function weatherApi(event) {
         localStorage.setItem("cityStorage", JSON.stringify(cityStorage));
         
       }
-
+     
       getLocalStorage();
 
       dataWeather(lon, lat, name);
@@ -72,7 +72,7 @@ function dataWeather(lon, lat, name) {
       windEl.textContent = `windspeed: ${windSpeed}`;
       uviIndexEl.textContent = `uvi: ${uvi}`;
       iconEl.setAttribute("src", urlIcon);
-        console.log(data);
+       
       //fivedayforecast
       const dayOne = data.daily[1];
       const dayTwo = data.daily[2];
@@ -108,6 +108,7 @@ function dataWeather(lon, lat, name) {
         var todaysWind = document.createElement("p");
         todaysWind.textContent = fiveDayWind;
         boxes.append(todaysWind);
+        
       }
     });
 }
@@ -115,6 +116,7 @@ function getLocalStorage() {
   var citiesSearched = JSON.parse(localStorage.getItem("citiesSearched")) || [];
   console.log(citiesSearched);
   searchContainer.innerHTML = "";
+ 
   for (let index = 0; index < citiesSearched.length; index++) {
     var cityButton = document.createElement("button");
     cityButton.textContent = citiesSearched[index][0];
@@ -123,6 +125,7 @@ function getLocalStorage() {
     cityButton.setAttribute("data-lon", citiesSearched[index][2]);
     cityButton.addEventListener("click", cityBtns);
     searchContainer.append(cityButton);
+    
   }
 }
 
